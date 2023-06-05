@@ -1,0 +1,103 @@
+﻿@model IPagedList<Magic_Books_Project.Models.Customers>
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Table 06</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/product_style.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <section class="ftco-section"
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="table-wrap">
+                        <table class="table">
+                            <thead class="thead-primary">
+                                <tr>
+                                    <th>
+                                        First Name
+                                    </th>
+                                    <th>
+                                        Last Name
+                                    </th>
+                                    <th>
+                                        Username
+                                    </th>
+                                    <th>
+                                        Password
+                                    </th>
+                                    <th>
+                                        Telephone
+                                    </th>
+                                    <th>
+                                        E-mail
+                                    </th>
+
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr class="alert" role="alert">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.first_name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.last_name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.username)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.password)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.telephone)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.e_mail)
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="site-btn">@Html.ActionLink("Edit", "Edit", new { id = item.customer_id }, new { @style = "color:black;" })</button> <br />
+                                        <br />
+                                        <button type="submit" class="site-btn"> @Html.ActionLink("Delete", "Delete", new { id = item.customer_id }, new { @style = "color:black;" })</button>
+                                    </td>
+                                </tr>
+                                }
+
+
+
+
+
+
+                            </tbody>
+                            <tr><td colspan="3">@Html.PagedListPager(Model, page => Url.Action("customer_edit_delete", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)   </td></tr>
+                        </table>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+</body>
+</html>

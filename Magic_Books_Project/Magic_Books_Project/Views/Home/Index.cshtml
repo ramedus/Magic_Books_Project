@@ -1,0 +1,74 @@
+﻿
+@model IEnumerable<Magic_Books_Project.Models.Product>
+
+@{
+    ViewBag.Title = "MainPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+<!-- Categories Section Begin -->
+
+<section class="categories">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 p-0" style="height:658.5px">
+                <div class="categories__item set-bg" style="background-image: url(../images/romance1.png);  height:640px" />
+
+                <div class="categories__text">
+                    <h1>Romance</h1>
+                    <p>
+                        Sitamet, consectetur adipiscing elit, sed do eiusmod tempor incidid-unt labore
+                        edolore magna aliquapendisse ultrices gravida.
+                    </p>
+                    <a href="#">Shop now</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                    <div class="categories__item set-bg" style="background-image: url(../images/fiction.png" );" />
+
+                    <div class="categories__text">
+                        <h4>Fiction</h4>
+                        <p>358 items</p>
+                        <a href="#">Shop now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                <div class="categories__item set-bg" style="background-image: url(../images/classics1.jpg" );" />
+
+                <div class="categories__text">
+                    <h4>Classics</h4>
+                    <p>273 items</p>
+                    <a href="#">Shop now</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+            <div class="categories__item set-bg" style="background-image: url(../images/mystery.png" );" />
+
+            <div class="categories__text">
+                <h4>Mystery & Detective</h4>
+                <p>159 items</p>
+                <a href="#">Shop now</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+        <div class="categories__item set-bg" style="background-image: url(../images/category5.jpg" );" />
+        <div class="categories__text">
+            <h4>Kids Books</h4>
+            <p>792 items</p>
+            <a href="#">Shop now</a>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</section>
+<!-- Categories Section End -->

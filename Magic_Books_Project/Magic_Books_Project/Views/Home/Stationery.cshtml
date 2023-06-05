@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Magic_Books_Project.Models.Subcategory>
+
+
+
+
+<ul class="dropdown">
+
+    @foreach (var gelen_kat in Model)
+    {
+        <li><a href="@Url.Action("Shop","Home",new {id=gelen_kat.subcategory_id})">@gelen_kat.subcategory_name</a></li>
+    }
+</ul>

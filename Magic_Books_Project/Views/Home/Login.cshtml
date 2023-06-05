@@ -1,0 +1,141 @@
+﻿@using Magic_Books_Project.Models;
+@model Magic_Books_Project.Models.Customers
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+
+
+@using (Html.BeginForm("Login", "Home"))
+{
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <form class="login100-form validate-form">
+                    <span class="login100-form-title p-b-26">
+                        Welcome
+                    </span>
+                    <span class="login100-form-title p-b-48">
+                        <i class="zmdi zmdi-font"></i>
+                    </span>
+                    
+                    <div class="wrap-input100 validate-input">
+
+                        @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control", placeholder = "Username" } })
+
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+                        <span class="btn-show-pass">
+                            <i class="zmdi zmdi-eye"></i>
+                        </span>
+                        @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password", type = "password" } })
+
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <div class="wrap-login100-form-btn">
+                            <div class="login100-form-bgbtn"></div>
+                            <button class="login100-form-btn">
+                                Login
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="text-center p-t-115">
+                        <span class="txt1">
+                            Don’t have an account?
+                        </span>
+
+                        <a class="txt2" href="@Url.Action("Sign_up","Home")">
+                            Sign Up
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- Footer Section Begin -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-7">
+                <div class="footer__about">
+                    <div class="footer__logo">
+                        <a href="./index.html"><img src="~/images/logo23.png" alt=""></a>
+                    </div>
+                    <p>
+                        Unleash your imagination with Magic Books - where every page holds a world of wonder.
+
+                    </p>
+                    <div class="footer__payment">
+                        <a href="#"><img src="img/payment/payment-1.png" alt=""></a>
+                        <a href="#"><img src="img/payment/payment-2.png" alt=""></a>
+                        <a href="#"><img src="img/payment/payment-3.png" alt=""></a>
+                        <a href="#"><img src="img/payment/payment-4.png" alt=""></a>
+                        <a href="#"><img src="img/payment/payment-5.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-5">
+                <div class="footer__widget">
+                    <h6>Quick links</h6>
+                    <ul>
+                        <li><a href="@Url.Action("About","Home")">About</a></li>
+
+                        <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4">
+                <div class="footer__widget">
+                    <h6>Account</h6>
+                    <ul>
+                        @if (Session["members"] == null)
+                        {
+                            <li><a href="@Url.Action("Login", "Home")">My Account</a></li>
+                        }
+                        else
+                        {
+                            <li> <a href="@Url.Action("my_orders", "Orders")">My Account</a></li>
+                        }
+                        @if (Session["members"] == null)
+                        {
+                            <li><a href="@Url.Action("Login", "Home")">Shopping Bag</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="@Url.Action("Index", "Bag")">Shopping Bag</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-8 col-sm-8">
+                <div class="footer__newslatter">
+                    <h6>NEWSLETTER</h6>
+                    <form action="#">
+                        <input type="text" placeholder="Email">
+                        <button type="submit" class="site-btn">Subscribe</button>
+                    </form>
+                    <div class="footer__social">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-youtube-play"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer Section End -->

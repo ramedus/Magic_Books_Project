@@ -1,0 +1,79 @@
+﻿@model IPagedList<Magic_Books_Project.Models.Publishers>
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Table 06</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/product_style.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <section class="ftco-section"
+    <div class="container">
+    <div class="row">
+    <div class="col-md-12">
+
+    <div class="table-wrap">
+    <table class="table">
+    <thead class="thead-primary">
+        <tr>
+            <th>
+                <a href="@Url.Action("Product_edit","Admin")"><img src="~/images/icon_dashboard.png" alt=""></a>
+            </th>
+            <th>
+                Publisher
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr class="alert" role="alert">
+            <td>
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+        
+
+        <td>
+        <button type="submit" class="site-btn">@Html.ActionLink("Edit", "Edit", new { id = item.publisher_id}, new { @style = "color:black;" })</button> <br />
+        <br />
+        <button type="submit" class="site-btn"> @Html.ActionLink("Delete", "Delete", new { id = item.publisher_id }, new { @style = "color:black;" })</button>
+        </td>
+        </tr>
+    }
+
+
+
+
+
+
+    </tbody>
+    <tr><td colspan="3">@Html.PagedListPager(Model, page => Url.Action("publishers_edit_delete", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)   </td></tr>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+
+
+
+</body>
+</html>

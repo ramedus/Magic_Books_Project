@@ -1,0 +1,241 @@
+﻿@model IPagedList<Magic_Books_Project.Models.Product>
+
+@using PagedList;
+@using PagedList.Mvc;
+@Styles.Render("~/Content/css")
+
+
+<!-- Google Font -->
+<!-- Css Styles -->
+
+
+
+<section class="shop spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3">
+                <div class="shop__sidebar">
+                    <div class="sidebar__categories">
+                        <div class="section-title">
+                            <h4>Categories</h4>
+                        </div>
+                        <div class="categories__accordion">
+                            <ul>
+                                <li><a href="@Url.Action("FictionCategory", "Home")" style="color: black; font-family: Poynter,Georgia,serif; ">FICTION</a></li>
+                                <li style="font-size: 16px;"><a href="#"> @{Html.RenderAction("Fiction", "Home"); }</a></li>
+                                <br />
+                                <li><a href="@Url.Action("NonfictionCategory", "Home")" style="color: black; font-family: Poynter,Georgia,serif; ">NONFICTION</a></li>
+                                <li style="font-size: 16px;"><a href="#"> @{Html.RenderAction("Nonfiction", "Home"); }</a></li>
+                                <br />
+                                <li><a href="@Url.Action("KidsCategory", "Home")" style="color: black; font-family: Poynter,Georgia,serif; ">KIDS</a></li>
+                                <li style="font-size: 16px;"><a href="#"> @{Html.RenderAction("Kids", "Home"); }</a></li>
+                                <br />
+                               
+                            </ul>
+                        </div>
+
+                    </div>
+                    @using (Html.BeginForm())
+                    {
+                        <div class="sidebar__sizes">
+                            <div class="section-title">
+                                <h4>Prices</h4>
+                            </div>
+
+                            <div class="size__list">
+
+
+                                <input name="price" type="submit" value="UNDER 5" style=" border: 0; outline: 0; cursor: pointer; color: rgb(60, 66, 87); background-color: rgb(255, 255, 255); box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 12%) 0px 1px 1px 0px, rgb(60 66 87 / 16%) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(60 66 87 / 8%) 0px 2px 5px 0px; border-radius: 4px; font-size: 14px; font-weight: 500; padding: 4px 8px; display: inline-block; min-height: 28px; transition: background-color .24s,box-shadow .24s;: hover
+{ box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 12%) 0px 1px 1px 0px, rgb(60 66 87 / 16%) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(60 66 87 / 8%) 0px 3px 9px 0px, rgb(60 66 87 / 8%) 0px 2px 5px 0px; }" />
+                                <br />
+                                <br />
+                                <input name="price" type="submit" value="5 AND 10" style=" border: 0; outline: 0; cursor: pointer; color: rgb(60, 66, 87); background-color: rgb(255, 255, 255); box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 12%) 0px 1px 1px 0px, rgb(60 66 87 / 16%) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(60 66 87 / 8%) 0px 2px 5px 0px; border-radius: 4px; font-size: 14px; font-weight: 500; padding: 4px 8px; display: inline-block; min-height: 28px; transition: background-color .24s,box-shadow .24s;: hover
+{ box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 12%) 0px 1px 1px 0px, rgb(60 66 87 / 16%) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(60 66 87 / 8%) 0px 3px 9px 0px, rgb(60 66 87 / 8%) 0px 2px 5px 0px; }">
+                                <br />
+                                <br />
+                                <input name="price" type="submit" value="10 AND 25" style=" border: 0; outline: 0; cursor: pointer; color: rgb(60, 66, 87); background-color: rgb(255, 255, 255); box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 12%) 0px 1px 1px 0px, rgb(60 66 87 / 16%) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(60 66 87 / 8%) 0px 2px 5px 0px; border-radius: 4px; font-size: 14px; font-weight: 500; padding: 4px 8px; display: inline-block; min-height: 28px; transition: background-color .24s,box-shadow .24s;: hover
+{ box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 12%) 0px 1px 1px 0px, rgb(60 66 87 / 16%) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(60 66 87 / 8%) 0px 3px 9px 0px, rgb(60 66 87 / 8%) 0px 2px 5px 0px; }" />
+                                <br />
+                                <br />
+                                <input name="price" type="submit" value="25 AND 50" style=" border: 0; outline: 0; cursor: pointer; color: rgb(60, 66, 87); background-color: rgb(255, 255, 255); box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 12%) 0px 1px 1px 0px, rgb(60 66 87 / 16%) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(60 66 87 / 8%) 0px 2px 5px 0px; border-radius: 4px; font-size: 14px; font-weight: 500; padding: 4px 8px; display: inline-block; min-height: 28px; transition: background-color .24s,box-shadow .24s;: hover
+{ box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 12%) 0px 1px 1px 0px, rgb(60 66 87 / 16%) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(60 66 87 / 8%) 0px 3px 9px 0px, rgb(60 66 87 / 8%) 0px 2px 5px 0px; }" />
+                                <br />
+                                <br />
+                                <input name="price" type="submit" value="UPPER 50" style=" border: 0; outline: 0; cursor: pointer; color: rgb(60, 66, 87); background-color: rgb(255, 255, 255); box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 12%) 0px 1px 1px 0px, rgb(60 66 87 / 16%) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(60 66 87 / 8%) 0px 2px 5px 0px; border-radius: 4px; font-size: 14px; font-weight: 500; padding: 4px 8px; display: inline-block; min-height: 28px; transition: background-color .24s,box-shadow .24s;: hover
+{ box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 12%) 0px 1px 1px 0px, rgb(60 66 87 / 16%) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(60 66 87 / 8%) 0px 3px 9px 0px, rgb(60 66 87 / 8%) 0px 2px 5px 0px; }" />
+
+
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9" style="margin-left: -118px;">
+                @foreach (var item in Model)
+                {
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6" style="width: 280px; height: 350px;">
+                            <div class="product__item">
+
+                                <div class="product__item__pic set-bg" style="background-image: url(../images/@item.image); width:425px;  height:247px; background-size:contain; margin:-3px;" />
+                                <ul class="product__hover">
+                                    <li><a href="@Url.Action("product_details", "Products", new { product_id = item.product_id })" class="image-popup"><span class="arrow_expand"></span></a></li>
+
+                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                    @if (Session["members"] == null)
+                                    {
+                                        <li><a href="@Url.Action("Login", "Home")"><span class="icon_bag_alt"></span></a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="@Url.Action("add_bag_cntrl", "Bag", new { product_id = item.product_id })"><span class="icon_bag_alt"></span></a></li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="product__item__text">
+                                <a href="@Url.Action("product_details", "Products", new { product_id = item.product_id })" style="margin-right:-169px; font-size:16px;"> @Html.DisplayFor(modelItem => item.name)</a>
+
+                                <div class="rating" style="margin-right: -165px; font-size:14px;">
+                                    <i>@Html.DisplayFor(modelItem => item.Authors.author_name)</i>
+
+                                </div>
+                                <div class="product__price" style="margin-right: -159px;">$@Html.DisplayFor(modelItem => item.price)</div>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    @Html.PagedListPager(Model, page => Url.Action("index", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+</section>
+<!-- Instagram Begin -->
+<div class="instagram">
+    <div class="container-fluid">
+        <div class="row" style="width:121%; height:305px;">
+            <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                <div class="instagram__item set-bg" style="background-image: url(../images/insta1.png" );" />
+                <div class="instagram__text">
+                    <i class="fa fa-instagram"></i>
+                    <a href="#">magic_books</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+            <div class="instagram__item set-bg" style="background-image: url(../images/insta2.png" );" />
+            <div class="instagram__text">
+                <i class="fa fa-instagram"></i>
+                <a href="#">magic_books</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+        <div class="instagram__item set-bg" style="background-image: url(../images/insta3.png" );" />
+        <div class="instagram__text">
+            <i class="fa fa-instagram"></i>
+            <a href="#">magic_books</a>
+        </div>
+    </div>
+</div>
+<div class="col-lg-2 col-md-4 col-sm-4 p-0">
+    <div class="instagram__item set-bg" style="background-image: url(../images/insta4.png" );" />
+    <div class="instagram__text">
+        <i class="fa fa-instagram"></i>
+        <a href="#"> magic_books</a>
+    </div>
+</div>
+        </div>
+<div class="col-lg-2 col-md-4 col-sm-4 p-0">
+    <div class="instagram__item set-bg" style="background-image: url(../images/insta5.png" );" />
+    <div class="instagram__text">
+        <i class="fa fa-instagram"></i>
+        <a href="#"> magic_books</a>
+    </div>
+</div>
+        </div>
+
+    </div>
+</div>
+</div>
+<!-- Instagram End -->
+<!-- Footer Section Begin -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-7">
+                <div class="footer__about">
+                    <div class="footer__logo">
+                        <a href="./index.html"><img src="~/images/logo23.png" alt=""></a>
+                    </div>
+                    <p>
+                        Unleash your imagination with Magic Books - where every page holds a world of wonder.
+
+                    </p>
+                    <div class="footer__payment">
+                        <a href="#"><img src="img/payment/payment-1.png" alt=""></a>
+                        <a href="#"><img src="img/payment/payment-2.png" alt=""></a>
+                        <a href="#"><img src="img/payment/payment-3.png" alt=""></a>
+                        <a href="#"><img src="img/payment/payment-4.png" alt=""></a>
+                        <a href="#"><img src="img/payment/payment-5.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-5">
+                <div class="footer__widget">
+                    <h6>Quick links</h6>
+                    <ul>
+                        <li><a href="@Url.Action("About","Home")">About</a></li>
+                        <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4">
+                <div class="footer__widget">
+                    <h6>Account</h6>
+                    <ul>
+                        @if (Session["members"] == null)
+                        {
+                            <li><a href="@Url.Action("Login", "Home")">My Account</a></li>
+                        }
+                        else
+                        {
+                            <li> <a href="@Url.Action("my_orders", "Orders")">My Account</a></li>
+                        }
+                        @if (Session["members"] == null)
+                        {
+                            <li><a href="@Url.Action("Login", "Home")">Shopping Bag</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="@Url.Action("Index", "Bag")">Shopping Bag</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-8 col-sm-8">
+                <div class="footer__newslatter">
+                    <h6>NEWSLETTER</h6>
+                    <form action="#">
+                        <input type="text" placeholder="Email">
+                        <button type="submit" class="site-btn">Subscribe</button>
+                    </form>
+                    <div class="footer__social">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-youtube-play"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer Section End -->

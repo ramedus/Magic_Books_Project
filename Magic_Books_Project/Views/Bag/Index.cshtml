@@ -1,0 +1,208 @@
+﻿@model Magic_Books_Project.Models.Bag
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/elegant-icons.css" rel="stylesheet" />
+<link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/Content/magnific-popup.css" rel="stylesheet" />
+<link href="~/Content/owl.carousel.min.css" rel="stylesheet" />
+<link href="~/Content/slicknav.min.css" rel="stylesheet" />
+<link href="~/Content/style.css" rel="stylesheet" />
+
+@Scripts.Render("~/bundles/jquery")
+<script>
+    $(document).on('click', '.number-spinner button', function () {
+        var btn = $(this),
+            oldValue = btn.closest('.number-spinner').find('input').val().trim(),
+            newVal = 0;
+
+        if (btn.attr('data-dir') == 'up') {
+            newVal = parseInt(oldValue) + 1;
+        } else {
+            if (oldValue > 1) {
+                newVal = parseInt(oldValue) - 1;
+            } else {
+                newVal = 1;
+            }
+        }
+        btn.closest('.number-spinner').find('input').val(newVal);
+    });
+</script>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery.magnific-popup.min.js"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Scripts/mixitup.min.js"></script>
+<script src="~/Scripts/jquery.countdown.min.js"></script>
+<script src="~/Scripts/jquery.slicknav.js"></script>
+<script src="~/Scripts/owl.carousel.min.js"></script>
+<script src="~/Scripts/jquery.nicescroll.min.js"></script>
+<script src="~/Scripts/main.js"></script>
+<!-- Shop Cart Section Begin -->
+<section class="shop-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shop__cart__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @using (Html.BeginForm("add_bag_cntrl", "Bag"))
+                            {
+                                foreach (var item in Model.Mybag)
+                                {
+                                    <tr>
+
+                                        
+                                            <td class="cart__product__item">
+                                                <img src="~/images/@item.prdct.image" style="height:150px; width:100px" />
+                                                <div class="cart__product__item__title">
+                                                    <h6> @Html.DisplayFor(model => item.prdct.name, new { htmlAttributes = new { @class = "form-control" } })</h6>
+                                                </div>
+
+                                            </td>
+                                        <td class="cart__price">$ @Html.DisplayFor(model => item.prdct.price, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                        <td class="cart__quantity">
+
+                                            <div class="pro-qty">
+                                                <span class="dec qtybtn">
+                                                    <button name="product_id" class="btn btn-default" value="@item.prdct.product_id" data-dir="down" onclick="'this.form.submit()'">-</button>
+                                                </span>
+                                                <input type="text" value="@Html.DisplayFor(model => item.quantity, new { htmlAttributes = new { @class = "form-control" } })">
+                                                <span class="inc qtybtn">
+                                                    <button name="product_id" class="btn btn-default" value="@item.prdct.product_id" data-dir="up" onclick="'this.form.submit()'">+</button>
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="cart__total">$ @(item.prdct.price * item.quantity)</td>
+                                        <td class="cart__close">
+                                            <a href="@Url.Action("remove_product", new { product_id = item.prdct.product_id })">
+                                                <img src="~/images/delete.png" style="width: 23px; height: 18px;" />
+                                            </a>
+                                        </td>
+
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="cart__btn">
+                                <a href="@Url.Action("Index","Products")">Continue Shopping</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 offset-lg-2">
+                        <div class="cart__total__procced">
+                            <h6>Cart total</h6>
+                            <ul>
+
+                                <li>Total <span>$ @Model.bag_total()</span></li>
+                            </ul>
+                            <a href="@Url.Action("order_received", "Orders")" class="primary-btn">BUY</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    </div>
+</section>
+<!-- Shop Cart Section End -->
+<!-- Footer Section Begin -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-7">
+                <div class="footer__about">
+                    <div class="footer__logo">
+                        <a href="./index.html"><img src="~/images/logo23.png" alt=""></a>
+                    </div>
+                    <p>
+                        Unleash your imagination with Magic Books - where every page holds a world of wonder.
+
+                    </p>
+                    <div class="footer__payment">
+                        <a href="#"><img src="img/payment/payment-1.png" alt=""></a>
+                        <a href="#"><img src="img/payment/payment-2.png" alt=""></a>
+                        <a href="#"><img src="img/payment/payment-3.png" alt=""></a>
+                        <a href="#"><img src="img/payment/payment-4.png" alt=""></a>
+                        <a href="#"><img src="img/payment/payment-5.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-5">
+                <div class="footer__widget">
+                    <h6>Quick links</h6>
+                    <ul>
+                        <li><a href="@Url.Action("About","Home")">About</a></li>
+
+                        <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4">
+                <div class="footer__widget">
+                    <h6>Account</h6>
+                    <ul>
+                        @if (Session["members"] == null)
+                        {
+                            <li><a href="@Url.Action("Login", "Home")">My Account</a></li>
+                        }
+                        else
+                        {
+                            <li> <a href="@Url.Action("my_orders", "Orders")">My Account</a></li>
+                        }
+                        @if (Session["members"] == null)
+                        {
+                            <li><a href="@Url.Action("Login", "Home")">Shopping Bag</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="@Url.Action("Index", "Bag")">Shopping Bag</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-8 col-sm-8">
+                <div class="footer__newslatter">
+                    <h6>NEWSLETTER</h6>
+                    <form action="#">
+                        <input type="text" placeholder="Email">
+                        <button type="submit" class="site-btn">Subscribe</button>
+                    </form>
+                    <div class="footer__social">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-youtube-play"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer Section End -->

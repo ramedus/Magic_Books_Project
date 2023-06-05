@@ -1,0 +1,82 @@
+﻿@model Magic_Books_Project.Models.Customers
+
+@{
+    Layout = null;
+}
+@Styles.Render("~/Content/css")
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+
+        <hr />
+        @Html.ActionLink("Back to List", "Index")
+        <dl class="dl-horizontal">
+            <dt>
+                First Name
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.first_name)
+            </dd>
+            <br />
+            <dt>
+                Last Name
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.last_name)
+            </dd>
+            <br />
+            <dt>
+                Username
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.username)
+            </dd>
+            <br />
+            <dt>
+                Password
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.password)
+            </dd>
+            <br />
+            <dt>
+                Telephone
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.telephone)
+            </dd>
+            <br />
+            <dt>
+                E-mail
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.e_mail)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="site-btn" />
+
+            </div>
+        }
+    </div>
+</body>
+</html>

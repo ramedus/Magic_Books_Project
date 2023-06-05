@@ -1,0 +1,137 @@
+﻿@model IQueryable<IGrouping<int, Magic_Books_Project.Models.Orders>>
+
+@{
+    ViewBag.Title = "my_orders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/css")
+
+<div class="checkout__order" style=" width: 600px; margin-left: 410px;">
+    @foreach (var order in Model)
+    {
+
+        <h5 style=" font-family: initial; color: darkblue; font-size: xx-large;">Your Order</h5><h5 style="font-family: ui-sans-serif; font-size: unset;">Order No: @order.Key</h5>
+
+        double order_total = 0;
+        foreach (var details in order)
+
+        {
+            order_total += details.quantity * details.Product.price;
+            <tr>
+                <td>
+                    <div class="checkout__order__product">
+                        <ul>
+                            <li>
+                                <span class="top__text">Product</span>
+                                
+                                <span class="top__text__right">Price</span>
+
+
+                            </li>
+                            <li>
+                                @details.Product.name<br /> <img src="~/images/@details.Product.image" style="height:150px; width:100px" /><span>$ @details.Product.price</span>
+                                <br />
+                                <span class="top__text__right" style=" margin-top: -93px;">Quantity</span> <br /><span style="margin-top: -66px;"> @details.quantity</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </td>
+            </tr>
+        }
+
+        <div class="checkout__order__total">
+            <ul>
+                <li><span>TOTAL</span></li>
+                <li> <span>$ @order_total</span></li>
+
+            </ul>
+        </div>
+
+    }
+
+</div>
+
+
+</table>
+
+<!-- Footer Section Begin -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-7">
+                <div class="footer__about">
+                    <div class="footer__logo">
+                        <a href="./index.html"><img src="~/images/logo23.png" alt=""></a>
+                    </div>
+                    <p>
+                        Unleash your imagination with Magic Books - where every page holds a world of wonder.
+
+                    </p>
+                    <div class="footer__payment">
+                        <a href="#"><img src="img/payment/payment-1.png" alt=""></a>
+                        <a href="#"><img src="img/payment/payment-2.png" alt=""></a>
+                        <a href="#"><img src="img/payment/payment-3.png" alt=""></a>
+                        <a href="#"><img src="img/payment/payment-4.png" alt=""></a>
+                        <a href="#"><img src="img/payment/payment-5.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-5">
+                <div class="footer__widget">
+                    <h6>Quick links</h6>
+                    <ul>
+                        <li><a href="@Url.Action("About","Home")">About</a></li>
+
+                        <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4">
+                <div class="footer__widget">
+                    <h6>Account</h6>
+                    <ul>
+                        @if (Session["members"] == null)
+                        {
+                            <li><a href="@Url.Action("Login", "Home")">My Account</a></li>
+                        }
+                        else
+                        {
+                            <li> <a href="@Url.Action("my_orders", "Orders")">My Account</a></li>
+                        }
+                        @if (Session["members"] == null)
+                        {
+                            <li><a href="@Url.Action("Login", "Home")">Shopping Bag</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="@Url.Action("Index", "Bag")">Shopping Bag</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-8 col-sm-8">
+                <div class="footer__newslatter">
+                    <h6>NEWSLETTER</h6>
+                    <form action="#">
+                        <input type="text" placeholder="Email">
+                        <button type="submit" class="site-btn">Subscribe</button>
+                    </form>
+                    <div class="footer__social">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-youtube-play"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer Section End -->

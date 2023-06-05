@@ -1,0 +1,109 @@
+﻿@model IQueryable<IGrouping<int, Magic_Books_Project.Models.Orders>>
+
+@{
+    Layout = null;
+}
+
+<link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/vendor/fonts/circular-std/style.css" rel="stylesheet" />
+<link href="~/libs/css/style.css" rel="stylesheet" />
+<link href="~/vendor/fonts/fontawesome/css/fontawesome-all.css" rel="stylesheet" />
+<link href="~/vendor/datatables/css/buttons.bootstrap4.css" rel="stylesheet" />
+<link href="~/vendor/datatables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+<link href="~/vendor/datatables/css/fixedHeader.bootstrap4.css" rel="stylesheet" />
+<link href="~/vendor/datatables/css/select.bootstrap4.css" rel="stylesheet" />
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>orders_list</title>
+</head>
+<body>
+    <div class="row">
+        <!-- ============================================================== -->
+        <!-- data table  -->
+        <!-- ============================================================== -->
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="mb-0">Data Tables - Excel, PDF Buttons</h2>
+                    
+                </div>
+                <div style=" margin-left: 21px;" >
+
+                    <tr>
+                        @Html.ActionLink("PDF", "orders_report", new { id = 1 }, new { @class = "btn btn-danger" })
+                        @Html.ActionLink("XLS", "orders_report", new { id = 2 }, new { @class = "btn btn-danger" })
+                    </tr>
+
+                </divstyle=">
+                <div class="card-body">
+                    <div class="table-responsive">
+
+                        <table id="example" class="table table-striped table-bordered second" style="width:100%">
+                            @{ double sum = 0;}
+                            @foreach (var order in Model)
+                            {
+                                <tr>
+                                    <td colspan="6" style="background-color:antiquewhite">Order No:@order.Key</td>
+                                </tr>
+                                <tr>
+
+                                    <th>First Name</th>
+                                    <th>Customer ID</th>
+                                    <th>Product Name</th>
+                                    <th>Order Date</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+
+                                    
+                                </tr>
+
+
+                                double siparis_toplami = 0;
+                                foreach (var details in order)
+                                {
+
+                                    <tr>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => details.Customers.first_name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => details.Customers.customer_id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => details.Product.name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => details.order_date)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => details.quantity)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => details.Product.price)
+                                        </td>
+
+                                    </tr>
+
+                                }
+                                <tr><td colspan="6" align="right"><b>Orders Total=@order.Sum(x=> x.total)</b></td></tr>
+                                sum += siparis_toplami;
+                            }
+
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end data table  -->
+        <!-- ============================================================== -->
+    </div>
+</body>
+</html>

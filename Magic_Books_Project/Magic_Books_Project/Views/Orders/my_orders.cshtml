@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Magic_Books_Project.Models.Orders>
+
+@{
+    ViewBag.Title = "my_orders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-lg-4">
+    <div class="checkout__order">
+        @foreach (var item in Model)
+        {
+            <h5>Your order</h5>
+        <div class="checkout__order__product">
+            <ul>
+                <li>
+                    <span class="top__text">Product</span>
+                    <span class="top__text__right">Total</span>
+                </li>
+                <li>@item.Product.name<span>@item.Product.price</span></li>
+            </ul>
+        </div>
+        <div class="checkout__order__total">
+            <ul>
+                <li>@item.Product.price * @item.quantity <span></span></li>
+                <li>Total <span></span></li>
+            </ul>
+        </div>
+        <div class="checkout__order__widget">
+            <label for="o-acc">
+                Create an acount?
+                <input type="checkbox" id="o-acc">
+                <span class="checkmark"></span>
+            </label>
+            <p>
+                Create am acount by entering the information below. If you are a returing customer
+                login at the top of the page.
+            </p>
+            <label for="check-payment">
+                Cheque payment
+                <input type="checkbox" id="check-payment">
+                <span class="checkmark"></span>
+            </label>
+            <label for="paypal">
+                PayPal
+                <input type="checkbox" id="paypal">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+        }
+        <button type="submit" class="site-btn">Place oder</button>
+    </div>
+</div>
+
+</table>

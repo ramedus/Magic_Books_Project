@@ -1,0 +1,238 @@
+﻿@model IEnumerable<Magic_Books_Project.Models.Product>
+@using Magic_Books_Project.Models
+@{
+    ViewBag.Title = "product_details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/css")
+<!-- Product Details Section Begin -->
+
+<section class="product-details spad">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-6">
+                @foreach (var item in Model)
+                {
+                    <div class="product__details__pic">
+
+                        <div class="product__details__slider__content" style="background-image: url(../images/@item.image); width:400px;  height:650px; background-size:cover; ">
+                            <div class="product__details__pic__slider owl-carousel">
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                }
+
+            </div>
+
+            <div class="col-lg-6">
+                @foreach (var item in Model)
+                {
+                    <div class="product__details__text">
+                        <h3>
+                            @item.name
+                            @if (item.category_id != 4)
+                            {<span>
+                                    <a href="@Url.Action("author_details", "Authors", new { author_id = item.Authors.author_id })"> @item.Authors.author_name</a>
+
+                                </span>
+                            }
+                        </h3>
+
+                        <div class="product__details__price">@item.price $ <span></span></div>
+                        <p style="font-size:20px">
+                            @item.description
+                        </p>
+                        <div class="product__details__button">
+                            @if (Session["members"] == null)
+                            {
+                                <a href="@Url.Action("Login", "Home")" class="cart-btn"><span class="icon_bag_alt"></span> Add to cart</a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("add_bag_cntrl", "Bag", new { product_id = item.product_id })" class="cart-btn"><span class="icon_bag_alt"></span> Add to cart</a>
+                            }
+                            <ul>
+                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                            </ul>
+                        </div>
+
+                        <div class="product__details__widget">
+                        </div>
+                        <div class="tab-pane active" id="tabs-1" role="tabpanel">
+
+
+                            <p style="font-size:20px">
+                                @if (item.category_id != 4)
+                                {
+                                    <b style="font-size: 16px;"> Publication date:  @item.published_date </b>
+                                    <br />
+                                    <b style="font-size: 16px;"> Publisher: @item.Publishers.name </b>
+                                    <br />
+                                    <b style="font-size: 16px;"> ISBN: @item.isbn </b>
+                                    <br />
+
+                                    <b style="font-size: 16px;"> Pages: @item.total_pages</b>
+                                }
+
+                            </p>
+
+                        </div>
+                    </div>
+                }
+            </div>
+
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-12">
+                    <div class="product__details__tab">
+                        <div class="tab-content">
+
+                            <div class="tab-pane" id="tabs-2" role="tabpanel">
+                            </div>
+                            <div class="tab-pane" id="tabs-3" role="tabpanel">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+
+    </div>
+</section>
+<!-- Product Details Section End -->
+<!-- Instagram Begin -->
+<div class="instagram">
+    <div class="container-fluid">
+        <div class="row" style="width:121%; height:305px;">
+            <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                <div class="instagram__item set-bg" style="background-image: url(../images/insta1.png" );" />
+                <div class="instagram__text">
+                    <i class="fa fa-instagram"></i>
+                    <a href="#">magic_books</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+            <div class="instagram__item set-bg" style="background-image: url(../images/insta2.png" );" />
+            <div class="instagram__text">
+                <i class="fa fa-instagram"></i>
+                <a href="#">magic_books</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+        <div class="instagram__item set-bg" style="background-image: url(../images/insta3.png" );" />
+        <div class="instagram__text">
+            <i class="fa fa-instagram"></i>
+            <a href="#">magic_books</a>
+        </div>
+    </div>
+</div>
+<div class="col-lg-2 col-md-4 col-sm-4 p-0">
+    <div class="instagram__item set-bg" style="background-image: url(../images/insta4.png" );" />
+    <div class="instagram__text">
+        <i class="fa fa-instagram"></i>
+        <a href="#"> magic_books</a>
+    </div>
+</div>
+        </div>
+<div class="col-lg-2 col-md-4 col-sm-4 p-0">
+    <div class="instagram__item set-bg" style="background-image: url(../images/insta5.png" );" />
+    <div class="instagram__text">
+        <i class="fa fa-instagram"></i>
+        <a href="#"> magic_books</a>
+    </div>
+</div>
+        </div>
+
+    </div>
+</div>
+</div>
+<!-- Instagram End -->
+<!-- Footer Section Begin -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-7">
+                <div class="footer__about">
+                    <div class="footer__logo">
+                        <a href="./index.html"><img src="~/images/logo23.png" alt=""></a>
+                    </div>
+                    <p>
+                        Unleash your imagination with Magic Books - where every page holds a world of wonder.
+
+                    </p>
+                    <div class="footer__payment">
+                        <a href="#"><img src="img/payment/payment-1.png" alt=""></a>
+                        <a href="#"><img src="img/payment/payment-2.png" alt=""></a>
+                        <a href="#"><img src="img/payment/payment-3.png" alt=""></a>
+                        <a href="#"><img src="img/payment/payment-4.png" alt=""></a>
+                        <a href="#"><img src="img/payment/payment-5.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-5">
+                <div class="footer__widget">
+                    <h6>Quick links</h6>
+                    <ul>
+                        <li><a href="@Url.Action("About","Home")">About</a></li>
+
+                        <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4">
+                <div class="footer__widget">
+                    <h6>Account</h6>
+                    <ul>
+                        @if (Session["members"] == null)
+                        {
+                            <li><a href="@Url.Action("Login", "Home")">My Account</a></li>
+                        }
+                        else
+                        {
+                            <li> <a href="@Url.Action("my_orders", "Orders")">My Account</a></li>
+                        }
+                        @if (Session["members"] == null)
+                        {
+                            <li><a href="@Url.Action("Login", "Home")">Shopping Bag</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="@Url.Action("Index", "Bag")">Shopping Bag</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-8 col-sm-8">
+                <div class="footer__newslatter">
+                    <h6>NEWSLETTER</h6>
+                    <form action="#">
+                        <input type="text" placeholder="Email">
+                        <button type="submit" class="site-btn">Subscribe</button>
+                    </form>
+                    <div class="footer__social">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-youtube-play"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer Section End -->

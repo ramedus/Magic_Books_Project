@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Magic_Books_Project.Models.Subcategory>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.subcategory_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categories.name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.subcategory_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categories.name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.subcategory_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.subcategory_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.subcategory_id })
+        </td>
+    </tr>
+}
+
+</table>
